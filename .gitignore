@@ -1,0 +1,5 @@
+wav/
+ultra_data/
+TIMIT/
+__pycache__/
+.idea/

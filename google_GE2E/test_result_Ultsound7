@@ -1,0 +1,102 @@
+
+EER : 0.31 (thres:0.97, FAR:0.28, FRR:0.33)
+
+EER : 0.42 (thres:0.99, FAR:0.72, FRR:0.11)
+
+EER : 0.28 (thres:0.97, FAR:0.33, FRR:0.22)
+
+EER : 0.33 (thres:0.97, FAR:0.33, FRR:0.33)
+
+EER : 0.19 (thres:0.96, FAR:0.28, FRR:0.11)
+
+EER : 0.56 (thres:0.99, FAR:0.67, FRR:0.44)
+
+EER : 0.33 (thres:0.97, FAR:0.33, FRR:0.33)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.28 (thres:0.97, FAR:0.33, FRR:0.22)
+
+EER : 0.25 (thres:0.99, FAR:0.28, FRR:0.22)
+
+EER : 0.19 (thres:0.98, FAR:0.17, FRR:0.22)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.19 (thres:0.98, FAR:0.17, FRR:0.22)
+
+EER : 0.33 (thres:0.97, FAR:0.33, FRR:0.33)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.53 (thres:0.99, FAR:0.50, FRR:0.56)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.31 (thres:0.97, FAR:0.28, FRR:0.33)
+
+EER : 0.28 (thres:0.97, FAR:0.33, FRR:0.22)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.25 (thres:0.99, FAR:0.28, FRR:0.22)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.53 (thres:0.99, FAR:0.50, FRR:0.56)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.56 (thres:0.99, FAR:0.67, FRR:0.44)
+
+EER : 0.53 (thres:0.99, FAR:0.50, FRR:0.56)
+
+EER : 0.44 (thres:0.99, FAR:0.56, FRR:0.33)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.56 (thres:0.99, FAR:0.56, FRR:0.56)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.50 (thres:0.99, FAR:0.78, FRR:0.22)
+
+EER : 0.25 (thres:0.97, FAR:0.28, FRR:0.22)
+
+EER : 0.42 (thres:0.99, FAR:0.72, FRR:0.11)
+
+EER : 0.19 (thres:0.96, FAR:0.28, FRR:0.11)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.28 (thres:0.97, FAR:0.33, FRR:0.22)
+
+EER : 0.44 (thres:0.99, FAR:0.67, FRR:0.22)
+
+EER : 0.25 (thres:0.99, FAR:0.28, FRR:0.22)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.56 (thres:0.99, FAR:0.67, FRR:0.44)
+
+EER : 0.28 (thres:0.97, FAR:0.33, FRR:0.22)
+
+EER : 0.25 (thres:0.99, FAR:0.28, FRR:0.22)
+
+EER : 0.33 (thres:0.97, FAR:0.33, FRR:0.33)
+
+EER : 0.33 (thres:0.97, FAR:0.33, FRR:0.33)
+
+EER : 0.22 (thres:0.98, FAR:0.22, FRR:0.22)
+
+EER : 0.28 (thres:0.99, FAR:0.22, FRR:0.33)
+
+ EER across 50 epochs: 0.3139
