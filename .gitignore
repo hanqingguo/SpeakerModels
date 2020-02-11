@@ -4,3 +4,6 @@ TIMIT/
 __pycache__/
 .idea/
 .ipynb_checkpoints/
+test_tisv/
+train_tisv/
+speech_id_checkpoint/
