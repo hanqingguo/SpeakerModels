@@ -9,3 +9,4 @@ train_tisv/
 speech_id_checkpoint/
 ultraData/
 16kHzUltradata/
+GMM-UBM/ubmdata.npy

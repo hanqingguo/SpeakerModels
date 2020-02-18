@@ -53,12 +53,12 @@ def extractMFCC(filename, sample_rate, nfft=512, nmels=20, nmfcc=20):
 
 
 def testModel(testPath, enrollNum):
-    test_utters = glob.glob('/home/hanqing/1My_Implementation_GE2E/TIMIT/TEST/*/*')
+    test_utters = glob.glob(testPath)
     speaker_en = {}
     speaker_ve = {}
     for speaker in test_utters:
         speaker_utters = glob.glob(speaker + '/*.WAV')
-        random.shuffle(speaker_utters)
+        # random.shuffle(speaker_utters)
         enroll = speaker_utters[:enrollNum]
         test = speaker_utters[enrollNum:]
         mfccs = []
@@ -75,6 +75,8 @@ if __name__ == '__main__':
     # train_utters = glob.glob('/home/hanqing/1My_Implementation_GE2E/TIMIT/TRAIN/*/*/*.WAV')
     # mfccs = []
     # total = len(train_utters)
+    # print(total)
+    # exit(0)
     # for idx, train_utter in enumerate(train_utters):
     #     print("{}/{}\n".format(idx, total))
     #     mfcc = extractMFCC(train_utter, 16000)
@@ -85,15 +87,24 @@ if __name__ == '__main__':
     # print("Train Speaker Data Saved! ")
     # exit(0)
 
-    mfccs = np.load('ubmdata.npy')
-    print("Train Speaker Data Loaded! ")
-    UBM = GaussianMixture(n_components=56, covariance_type='full', max_iter=10)
-    UBM.fit(mfccs)
-    print(UBM)
-    pickle.dump(UBM, open("ubm.p", "wb"))
+    # mfccs = np.load('ubmdata.npy')
+    # print("Train Speaker Data Loaded! ")
+    # UBM = GaussianMixture(n_components=56, covariance_type='full', max_iter=100)
+    # UBM.fit(mfccs)
+    # print(UBM)
+    # pickle.dump(UBM, open("ubm.p", "wb"))
 
     UBM = pickle.load(open("ubm.p", "rb"))
+
     # print(UBM)
+    speaker_en, speaker_ve = testModel('/home/hanqing/1My_Implementation_GE2E/TIMIT/TEST/*/*', 3)
 
-    test_utters = glob.glob('/home/hanqing/1My_Implementation_GE2E/TIMIT/TEST/*/*')
-
+    # test_utters = glob.glob('/home/hanqing/1My_Implementation_GE2E/TIMIT/TEST/*/*')
+    fit_speaker = speaker_en['/home/hanqing/1My_Implementation_GE2E/TIMIT/TEST/DR6/MRJS0']
+    ori_pred = UBM.predict(fit_speaker)
+    print(ori_pred)
+    print(ori_pred.shape)
+    UBM.fit(fit_speaker)
+    pred = UBM.predict(fit_speaker)
+    print(pred)
+    print(pred.shape)
