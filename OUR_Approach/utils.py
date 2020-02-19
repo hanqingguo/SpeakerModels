@@ -19,6 +19,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import matplotlib.patches as patches
 
 
+
 def readfile(file):
     sr, samples = scipy.io.wavfile.read(file)
     # print("Person : {}, VoiceID : {}".format(os.path.dirname(file), file[-5:]))
@@ -83,18 +84,18 @@ def get_mfcc(mel_basis, max_idx, Xdb, sr, n_mfcc, log=True):
 
     mfccs = librosa.feature.mfcc(S=dot_result, sr=sr, n_mfcc=n_mfcc)
     # draw a yellow bin
-    fig, ax = plt.subplots(1)
-    librosa.display.specshow(mfccs, x_axis='time')
-    # x_axis_res = 17.35*5 / Xdb.shape[1]
-    x_axis_res = 43.5 / Xdb.shape[1]
-    y_axis_res = 10 / Xdb.shape[0]
-    # print(x_axis_res * max_idx, y_axis_res * 50)
-    rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
-                             edgecolor='y',
-                             facecolor='none')
-    ax.add_patch(rect)
-    plt.title("MFCC result")
-    plt.show()
+    # fig, ax = plt.subplots(1)
+    # librosa.display.specshow(mfccs, x_axis='time')
+    # # x_axis_res = 17.35*5 / Xdb.shape[1]
+    # x_axis_res = 43.5 / Xdb.shape[1]
+    # y_axis_res = 10 / Xdb.shape[0]
+    # # print(x_axis_res * max_idx, y_axis_res * 50)
+    # rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
+    #                          edgecolor='y',
+    #                          facecolor='none')
+    # ax.add_patch(rect)
+    # plt.title("MFCC result")
+    # plt.show()
     return mfccs
 
 
@@ -181,17 +182,18 @@ def draw_fricative_mfcc(mfccs, max_idx, lookafter_width, lookahead_width, freq_u
                              x_axis_res * (lookahead_width + lookafter_width), y_axis_res * freq_upper, linewidth=3,
                              edgecolor='y',
                              facecolor='none')
-    ax.add_patch(rect)
-    plt.title("MFCC Fricative result")
-    plt.show()
+    # ax.add_patch(rect)
+    # plt.title("MFCC Fricative result")
+    # plt.show()
 
 
 if __name__ == '__main__':
-    sr, samples = readfile('../ultraData/3/bad/6.wav')
+    sr, samples = readfile('../ultraData/5/bad/19.wav')
     lower_bound = 200
     upper_bound = 800
     Xdb = get_stft(sr=sr, samples=samples)
     draw_fricative(Xdb, lower_bound, upper_bound)
+    exit(0)
     print(Xdb.shape)
     max_idx = get_fri_indics(Xdb, lower_bound, upper_bound)
     mel_basis = gen_mel(48000, 2048, 10)
