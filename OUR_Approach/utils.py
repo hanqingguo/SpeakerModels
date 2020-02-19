@@ -22,7 +22,6 @@ import matplotlib.patches as patches
 
 def readfile(file):
     sr, samples = scipy.io.wavfile.read(file)
-    # print("Person : {}, VoiceID : {}".format(os.path.dirname(file), file[-5:]))
     return sr, samples
 
 
@@ -67,9 +66,9 @@ def gen_mel(sr, nfft, n_mels):
     # sample rate 太高导致mel filters 在高频处没有响应
     mel_basis = librosa.filters.mel(sr=sr, n_fft=nfft, n_mels=n_mels)
     # print("Shape of Mel Filters : {}".format(mel_basis.shape))
-    # librosa.display.specshow(mel_basis, x_axis='linear', sr=sr)
-    # plt.title("Mel Filters")
-    # plt.show()
+    librosa.display.specshow(mel_basis, x_axis='linear', sr=sr)
+    plt.title("Mel Filters")
+    plt.show()
     # print("Mel_filters shape is : {}".format(mel_basis.shape))
     return mel_basis
 
@@ -84,18 +83,18 @@ def get_mfcc(mel_basis, max_idx, Xdb, sr, n_mfcc, log=True):
 
     mfccs = librosa.feature.mfcc(S=dot_result, sr=sr, n_mfcc=n_mfcc)
     # draw a yellow bin
-    # fig, ax = plt.subplots(1)
-    # librosa.display.specshow(mfccs, x_axis='time')
+    fig, ax = plt.subplots(1)
+    librosa.display.specshow(mfccs, x_axis='time')
     # # x_axis_res = 17.35*5 / Xdb.shape[1]
-    # x_axis_res = 43.5 / Xdb.shape[1]
-    # y_axis_res = 10 / Xdb.shape[0]
-    # # print(x_axis_res * max_idx, y_axis_res * 50)
-    # rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
-    #                          edgecolor='y',
-    #                          facecolor='none')
-    # ax.add_patch(rect)
-    # plt.title("MFCC result")
-    # plt.show()
+    x_axis_res = 43.5 / Xdb.shape[1]
+    y_axis_res = 10 / Xdb.shape[0]
+    # print(x_axis_res * max_idx, y_axis_res * 50)
+    rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
+                             edgecolor='y',
+                             facecolor='none')
+    ax.add_patch(rect)
+    plt.title("MFCC result")
+    plt.show()
     return mfccs
 
 
@@ -188,13 +187,12 @@ def draw_fricative_mfcc(mfccs, max_idx, lookafter_width, lookahead_width, freq_u
 
 
 if __name__ == '__main__':
-    sr, samples = readfile('../ultraData/5/bad/19.wav')
+    sr, samples = readfile('../ultraData/6/bad/2.wav')
     lower_bound = 200
     upper_bound = 800
     Xdb = get_stft(sr=sr, samples=samples)
     draw_fricative(Xdb, lower_bound, upper_bound)
-    exit(0)
-    print(Xdb.shape)
+
     max_idx = get_fri_indics(Xdb, lower_bound, upper_bound)
     mel_basis = gen_mel(48000, 2048, 10)
     mfcc = get_mfcc(mel_basis, max_idx, Xdb, 192000, 10, log=True)
