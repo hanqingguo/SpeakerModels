@@ -7,7 +7,11 @@
 # July 2018
 
 # Description: 
-# This code prepares TIMIT for the following speaker identification experiments. 
+# This code prepares TIMIT for the following speaker identification experiments.
+################################################################################
+# 1. Remove start and end silences based on .wrd label.
+# 2. normalize the amplitude
+################################################################################
 # It removes start and end silences according to the information reported in the *.wrd files and normalizes the amplitude of each sentence.
  
 # How to run it:

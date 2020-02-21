@@ -65,7 +65,7 @@ def create_batches_rnd(batch_size,data_folder,wav_lst,N_snt,wlen,lab_dict,fact_a
 
 
 # Reading cfg file
-options=read_conf()
+options=read_conf() # read cfg based on sys arg
 
 #[data]
 tr_lst=options.tr_lst
