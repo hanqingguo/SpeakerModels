@@ -21,6 +21,7 @@ import os
 import soundfile as sf
 import numpy as np
 import sys
+import pathlib
 
 def ReadList(list_file):
  f=open(list_file,"r")
@@ -52,11 +53,11 @@ copy_folder(in_folder,out_folder)
 
 
 # Speech Data Reverberation Loop
-for i in range(len(list_sig)): 
- 
+for i in range(len(list_sig)):
+
  # Open the wav file
  wav_file=in_folder+'/'+list_sig[i]
- [signal, fs] = sf.read(wav_file)
+ [signal, fs] = sf.read(wav_file.upper())
  signal=signal.astype(np.float64)
 
  # Signal normalization
@@ -64,17 +65,17 @@ for i in range(len(list_sig)):
 
  # Read wrd file
  wrd_file=wav_file.replace(".wav",".wrd")
- wrd_sig=ReadList(wrd_file)
+ wrd_sig=ReadList(wrd_file.upper())
  beg_sig=int(wrd_sig[0].split(' ')[0])
  end_sig=int(wrd_sig[-1].split(' ')[1])
- 
+
  # Remove silences
  signal=signal[beg_sig:end_sig]
 
- 
+
  # Save normalized speech
  file_out=out_folder+'/'+list_sig[i]
-
+ pathlib.Path(os.path.dirname(file_out)).mkdir(parents=True, exist_ok=True)
  sf.write(file_out, signal, fs)
- 
+
  print("Done %s" % (file_out))
