@@ -11,4 +11,4 @@ ultraData/
 16kHzUltradata/
 GMM-UBM/ubmdata.npy
 train/
-model_raw.pkl
+exp/

@@ -22,6 +22,9 @@ import matplotlib.patches as patches
 
 def readfile(file):
     sr, samples = scipy.io.wavfile.read(file)
+    librosa.display.waveplot(samples.astype('float'),sr=sr)
+    plt.title("Raw wav Result")
+    plt.show()
     return sr, samples
 
 
@@ -31,11 +34,12 @@ def get_stft(sr, samples):
     :param sr: sample rate
     :param samples: amplitude samples read from wav file
     :return: STFT result, 1025*752, 1025 determined by default librosa.stft function, where n_fft=2048
-    752 is determined by sample rate. 192000 => 752
+    752 is determined by sample rate. 192000 => 752 = (time*fs - window_length) / hop_length
                                        48000 => 188
     """
     X = librosa.stft(samples.astype('float'))
     Xdb = librosa.amplitude_to_db(np.abs(X))
+    print(Xdb.shape)
 
     return Xdb
 
@@ -51,13 +55,13 @@ def draw_fricative(Xdb, lower_bound, upper_bound):
     # y_axis_res = 10/Xdb.shape[1]
     # rect = patches.Rectangle((3.5, 1.5), 0.01, 3, linewidth=3, edgecolor='y', facecolor='none')
     # max_xaxis = 752
-    max_xaxis = 1879
-    max_yaxis = 9.6e4
-    y_axis_res = max_yaxis / Xdb.shape[0]
-    rect = patches.Rectangle((max_idx, lower_bound * y_axis_res), 0.01, (upper_bound - lower_bound) * y_axis_res,
-                             linewidth=2, edgecolor='y', facecolor='none')
-    # 坐标是左下角坐标
-    axes1.add_patch(rect)
+    # max_xaxis = 1879
+    # max_yaxis = 9.6e4
+    # y_axis_res = max_yaxis / Xdb.shape[0]
+    # rect = patches.Rectangle((max_idx, lower_bound * y_axis_res), 0.01, (upper_bound - lower_bound) * y_axis_res,
+    #                          linewidth=2, edgecolor='y', facecolor='none')
+    # # 坐标是左下角坐标
+    # axes1.add_patch(rect)
     plt.title("STFT Result")
     plt.show()
 
@@ -86,13 +90,13 @@ def get_mfcc(mel_basis, max_idx, Xdb, sr, n_mfcc, log=True):
     fig, ax = plt.subplots(1)
     librosa.display.specshow(mfccs, x_axis='time')
     # # x_axis_res = 17.35*5 / Xdb.shape[1]
-    x_axis_res = 43.5 / Xdb.shape[1]
-    y_axis_res = 10 / Xdb.shape[0]
-    # print(x_axis_res * max_idx, y_axis_res * 50)
-    rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
-                             edgecolor='y',
-                             facecolor='none')
-    ax.add_patch(rect)
+    # x_axis_res = 43.5 / Xdb.shape[1]
+    # y_axis_res = 10 / Xdb.shape[0]
+    # # print(x_axis_res * max_idx, y_axis_res * 50)
+    # rect = patches.Rectangle((x_axis_res * max_idx, y_axis_res * 50), 0.01, y_axis_res * 600, linewidth=3,
+    #                          edgecolor='y',
+    #                          facecolor='none')
+    # ax.add_patch(rect)
     plt.title("MFCC result")
     plt.show()
     return mfccs
@@ -194,8 +198,8 @@ if __name__ == '__main__':
     draw_fricative(Xdb, lower_bound, upper_bound)
 
     max_idx = get_fri_indics(Xdb, lower_bound, upper_bound)
-    mel_basis = gen_mel(48000, 2048, 10)
-    mfcc = get_mfcc(mel_basis, max_idx, Xdb, 192000, 10, log=True)
+    mel_basis = gen_mel(16000, 2048, 10)
+    mfcc = get_mfcc(mel_basis, max_idx, Xdb, 16000, 10, log=True)
     lookafter_width, lookahead_with = get_fri_width(mfcc, max_idx,
                                                     width_threshold=0.8)
     draw_fricative_mfcc(mfcc, max_idx, lookafter_width, lookahead_with, freq_upper=upper_bound, freq_lower=lower_bound)

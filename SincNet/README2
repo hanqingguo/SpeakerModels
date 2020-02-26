@@ -1,0 +1,25 @@
+How to run this?
+
+First:
+run:
+vad/silence-removal-master/train_test_list.py 
+to get:
+Train Pool:
+	speaker 1,2,3,4,5,6,7,8,9,10
+	randomly choose 5 utterances from each speaker as train set.
+	the rest 20 utterances from each speaker as test set.
+Test Pool:
+	speaker 11,12,13,14
+	randomly choose 3 utterances from each speaker as enroll
+	the rest 22 utterances from each speaker as verification
+
+Run speaker_id.py with given .cfg file.
+The cfg file will has information of network structure, and train set, test set.
+
+After running speaker_id.py, it will generate model.pkl file.
+
+Run compute_d_vector.py with given enroll.scp and verification.scp seperately.
+Then it will load model.pkl and generate d_vec_enroll.npy and d_vec_verification.npy
+
+Run computeEER.py with given d_vec_enroll.npy and d_vec_verification.npy
+
